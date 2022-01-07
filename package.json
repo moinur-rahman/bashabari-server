@@ -13,7 +13,7 @@
     "start": "node src/index.js",
     "dev": "nodemon -r dotenv/config src/index.js dotenv_config_path=./config/dev.env",
     "client":"cd client && yarn start",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --prefix client && yarn build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn build --prefix client"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
