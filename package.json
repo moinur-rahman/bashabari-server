@@ -1,0 +1,33 @@
+{
+  "name": "bashabari",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/moinur-rahman/bashabari.git",
+  "author": "moinur-rahman <rahmanmoin27@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "16.13.1",
+    "npm": "8.1.2"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon -r dotenv/config src/index.js dotenv_config_path=./config/dev.env",
+    "client":"cd client && npm start",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.1.2",
+    "mongoose": "^6.0.7",
+    "multer": "^1.4.3",
+    "sharp": "^0.29.1",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13"
+  }
+}
