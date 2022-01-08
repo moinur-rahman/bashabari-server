@@ -35,7 +35,7 @@ const userWorkerSchema = new mongoose.Schema(
       type: String,
     },
     age: {
-      type: String,
+      type: Number,
     },
     education: {
       type: String,
@@ -52,6 +52,9 @@ const userWorkerSchema = new mongoose.Schema(
     salaryRange: {
       type: String,
     },
+    rating:{
+      type:Number
+    }
   },
   {
     timestamps: true,

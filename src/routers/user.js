@@ -16,7 +16,9 @@ router.post("/userOwner", async (req, res) => {
 });
 
 router.post("/userWorker", async (req, res) => {
-  const user = new UserWorker(req.body);
+  const rating = Math.floor(Math.random() * 5 + 1);
+
+  const user = new UserWorker({ ...req.body, rating });
 
   try {
     await user.save();
@@ -26,11 +28,60 @@ router.post("/userWorker", async (req, res) => {
   }
 });
 
+router.post("/login", async (req, res) => {
+  try {
+    const userOwner = await UserOwner.findOne(req.body);
+    const userWorker = await UserWorker.findOne(req.body);
+    if (userOwner) {
+      res.status(201).send(userOwner);
+    }
+    if (userWorker) {
+      res.status(201).send(userWorker);
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 router.post("/userWorker/search", async (req, res) => {
-  const { age, education, jobDescription, gender, address, salaryRange } =
-    req.body;
+  const {
+    age,
+    education,
+    jobDescription,
+    gender,
+    address,
+    salaryRange,
+    rating,
+  } = req.body;
 
   var filter = {};
+
+  if (age == "10-20") {
+    filter = {
+      ...filter,
+      age: {
+        $gte: 10,
+        $lte: 20,
+      },
+    };
+  } else if (age == "21-30") {
+    filter = {
+      ...filter,
+      age: {
+        $gte: 21,
+        $lte: 30,
+      },
+    };
+  }
+  if (age == "31-40") {
+    filter = {
+      ...filter,
+      age: {
+        $gte: 31,
+        $lte: 40,
+      },
+    };
+  }
 
   if (education) {
     filter = {
@@ -63,7 +114,12 @@ router.post("/userWorker/search", async (req, res) => {
     };
   }
 
-  console.log(filter);
+  if (rating) {
+    filter = {
+      ...filter,
+      rating,
+    };
+  }
 
   try {
     const user = await UserWorker.find(filter);
