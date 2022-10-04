@@ -6,8 +6,8 @@
   "author": "moinur-rahman <rahmanmoin27@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": "16.13.1",
-    "npm": "8.1.2"
+    "node": "16.17.0",
+    "npm": "8.15.0"
   },
   "scripts": {
     "start": "node src/index.js",
